@@ -58,7 +58,8 @@ Base4096Hangul.encodeString = function (rawStr, inputOptions) {
 	return options.header + result + options.footer;
 };
 Base4096Hangul.decodeString = function (rawStr) {
-    var str = rawStr.replace(/\s/g, '').match(/[\uAC00-\uCC09]+/)[0]; // Base8192Hangul in future?
+    var str = rawStr.match(/[\uAC00-\uCC09]/g).join(''); // Base8192Hangul in future?
+    console.log(str);
 	var MyArr = str.split('').map(function (digit) {
 		var uint12 = Base4096Hangul.Decode_char(digit);
 		var xbin = uint12.toString(2);
