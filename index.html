@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Base4096Hangul</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="index.js"></script>
+	<meta name="pridejs-config-duration" content="regular">
+	<style type="text/css">
+	</style>
+	<style type="text/css">
+	._desktop-linecompact {
+		display: inline-block;
+	}
+	._desktop-linebreak {
+		display: block;
+	}
+	@media screen and (max-width: 767px) {
+		.desktop-only {
+			display: none;
+		}
+		._desktop-linecompact {
+			display: block;
+		}
+		._desktop-linebreak {
+			display: inline-block;
+		}
+	}
+	</style>
+	<style type="text/css">
+	* {
+		text-rendering: optimizeLegibility;
+		box-sizing: border-box;
+		transition: all 200ms ease;
+	}
+	body {
+		font-family: -apple-system, 'Helvetica Neue', Helvetica, 'Open Sans', 'Lucida Grande', Arial, 'Arial-Black', 'Arial Black', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', sans-serif;
+		font-size: 18px;
+		font-weight: 300;
+		color: #FFF;
+		color: #000;
+		background: #2089DA;
+		background: #F2F2F2;
+		padding: 0;
+		margin: 0;
+	}
+	.cont {
+		width: auto;
+		max-width: 660px;
+		padding: 1px 24px 0;
+		margin: 0 auto;
+	}
+	.content {
+		margin: 1.6rem 0 0;
+	}
+	h1 {
+		font-size: 26px;
+		/* height: 0px; */
+		margin: 1.6rem 0 0;
+		/* overflow: hidden; */
+	}
+	h1 a {
+		color: inherit;
+	}
+	h2 {
+		font-size: 16px;
+		font-weight: 500;
+		letter-spacing: 0.12rem;
+		text-transform: uppercase;
+		opacity: 1;
+		margin: 0 0 0.8rem;
+	}
+	textarea {
+		font-family: 'Source Code Pro', 'Menlo', 'Consolas', 'Monaco', Seravek, 'Open Sans', 'Helvetica Neue', Helvetica, 'Lucida Grande', Arial, 'Arial-Black', 'Arial Black', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', sans-serif;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 26px;
+		word-wrap: break-word;
+		word-break: break-all;
+		box-shadow: rgba(0, 0, 0, 0.044) 0 1px 2px;
+		border: none;
+		border-radius: 3px;
+		outline: none;
+
+		display: block;
+		width: 100%;
+		height: 20vh;
+		padding: 6px;
+		margin: 0;
+
+		resize: none;
+	}
+	@media screen and (max-height: 500px) {
+		textarea {
+			height: 6rem;
+		}
+	}
+    #userActions-container {
+        height: 50px;
+    }
+    #userActions-container > button {
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+		color: #FFF;
+		background: #17F;
+		border: none;
+		border-radius: 5px;
+		display: block;
+		width: 45%;
+		padding: 15px 0;
+		margin: 0;
+		cursor: pointer;
+	}
+	#userActions-container > button:first-child {
+		float: left;
+	}
+	#userActions-container > button:last-child {
+		float: right;
+	}
+	footer {
+		font-size: 13px;
+		font-weight: 400;
+		color: #999;
+
+		padding: 2rem 0 2rem;
+	}
+	footer a {
+		color: inherit;
+		text-decoration: underline;
+		transition: none;
+	}
+	footer a:hover {
+		opacity: 1;
+	}
+	/* ---------------------------------------- */
+	a {
+		color: #17F;
+		text-decoration: none;
+	}
+	</style>
+	<style>
+	.bookmarklet-anchor-hidden-text {
+		font-size: 0px;
+	}
+	.bookmarklet-anchor-hidden-text::before {
+		font-size: 13px;
+	}
+	</style>
+	<script>
+	function focus () {
+		document.getElementById('ta-input').focus();
+	};
+	</script>
+</head>
+<body onclick="focus()" data-string-empty="true">
+	<div class="cont" onclick="focus()">
+		<h1><a href="./">Base4096Hangul</a></h1>
+		<div class="content" id="ta-input-container">
+			<h2><label for="ta-input">Input</label></h2>
+			<textarea id="ta-input" autofocus></textarea>
+		</div>
+		<div class="content" id="userActions-container">
+			<button onclick="btn_encodeBUsc()">Encode</button>
+			<button onclick="btn_decodeBUsc()">Decode</button>
+		</div>
+		<div class="content" id="ta-output-container">
+			<h2>Result</h2>
+			<textarea id="ta-output"></textarea>
+		</div>
+		<footer class="desktop-only">
+			<div class="_desktop-linecompact">
+				Created by <a href="//neruthes.xyz/">Neruthes</a>.
+				<span>The <a href="//github.com/neruthes/Base4096Hangul/">source code</a> is available under <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>.</span>
+			</div>
+		</footer>
+	</div>
+	<script>
+	var btn_encodeBUsc = function () {
+        document.getElementById('ta-output').value = '';
+		setTimeout(function () {
+            document.getElementById('ta-output').value = Base4096Hangul.encodeString(document.getElementById('ta-input').value, {header:'Decode this message with https://neruthes.xyz/Base4096Hangul/ —  ((',footer:'))'});
+    		document.getElementById('ta-output').select();
+        }, 150);
+	};
+	var btn_decodeBUsc = function () {
+        document.getElementById('ta-output').value = '';
+        setTimeout(function () {
+    		document.getElementById('ta-output').value = Base4096Hangul.decodeString(document.getElementById('ta-input').value);
+    		document.getElementById('ta-output').select();
+        }, 150);
+	};
+
+	document.getElementById('ta-input').value = 'Hello world!';
+
+	var taOutputFocusEventHandler = function () {
+		setTimeout(function () {
+			document.getElementById('ta-output').select();
+		}, 10);
+	};
+
+	document.getElementById('ta-output').addEventListener('focus', taOutputFocusEventHandler);
+	document.getElementById('ta-output').addEventListener('click', taOutputFocusEventHandler);
+	</script>
+</body>
+</html>

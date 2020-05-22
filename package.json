@@ -1,0 +1,24 @@
+{
+  "name": "Base4096Hangul",
+  "version": "1.0.0",
+  "description": "Encode data in Hangul",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://neruthes@github.com/neruthes/Base4096Hangul.git"
+  },
+  "keywords": [
+    "encoding",
+    "base64",
+    "base4096"
+  ],
+  "author": "Neruthes",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/neruthes/Base4096Hangul/issues"
+  },
+  "homepage": "https://github.com/neruthes/Base4096Hangul#readme"
+}
