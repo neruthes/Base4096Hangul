@@ -15,6 +15,7 @@ Base4096Hangul.encodeString = function (rawStr, inputOptions) {
     var options = {
         header: '',
         footer: '',
+        randomSpaces: false
     };
     if (inputOptions) {
         Object.keys(inputOptions).map(x => options[x] = inputOptions[x]);
@@ -31,22 +32,36 @@ Base4096Hangul.encodeString = function (rawStr, inputOptions) {
 		};
 		return xbin;
 	}).join('').replace(/(\d{12})/g, '$1 ').trim();
-	var result = result_1.split(' ').map(function (x) {
+    var result = result_1.split(' ').map(function (x) {
 		if (x.length === 12) {
 			return Base4096Hangul.Encode_char(parseInt(x, 2));
 		} else {
 			return Base4096Hangul.Encode_char(parseInt(x + (new Array(12-x.length)).fill(0).join(''), 2));
 		};
 	}).join('');
+    if (result.length > 15 && options.randomSpaces) { // Add random space chars
+        var tmp2 = result;
+        var tmp2length = tmp2.length;
+        var tmp3 = '';
+        var tmp3progress = 0;
+        while (tmp2.length > 0) {
+            var stepLength = Math.floor(Math.random() * 4) + 2;
+            var phrase = tmp2.slice(0, stepLength);
+            console.log(phrase);
+            tmp3 += phrase + ' ';
+            tmp2 = tmp2.slice(stepLength);
+            tmp3progress += stepLength;
+        };
+        result = tmp3;
+    };
     // Use `0xAC00 + 8200` for padding in future
-	// return options.header + result.replace(/(.{9})/g, '$1 ').trim();
 	return options.header + result + options.footer;
 };
 Base4096Hangul.decodeString = function (rawStr) {
-    var str = rawStr.match(/[\uAC00-\uCC09]+/)[0]; // Base8192Hangul in future?
+    var str = rawStr.replace(/\s/g, '').match(/[\uAC00-\uCC09]+/)[0]; // Base8192Hangul in future?
 	var MyArr = str.split('').map(function (digit) {
-		var num = Base4096Hangul.Decode_char(digit);
-		var xbin = num.toString(2);
+		var uint12 = Base4096Hangul.Decode_char(digit);
+		var xbin = uint12.toString(2);
 		var realXbin = (new Array(12-xbin.length)).fill('0').join('') + xbin;
 		return realXbin;
 	}).join('').replace(/(\d{8})/g, '$1 ').trim().split(' ').map(function (xbin, i) {
@@ -54,7 +69,7 @@ Base4096Hangul.decodeString = function (rawStr) {
 			return parseInt(xbin, 2);
 		};
 	});
-    var decodedString = (new TextDecoder('utf-8')).decode(new Uint8Array(MyArr)).replace('\0', '');
+    var decodedString = (new TextDecoder('utf-8')).decode(new Uint8Array(MyArr));
     return decodedString;
 };
 

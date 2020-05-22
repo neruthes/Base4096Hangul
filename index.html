@@ -179,7 +179,7 @@
 	var btn_encodeBUsc = function () {
         document.getElementById('ta-output').value = '';
 		setTimeout(function () {
-            document.getElementById('ta-output').value = Base4096Hangul.encodeString(document.getElementById('ta-input').value, {header:'Decode this message with https://neruthes.xyz/Base4096Hangul/ —  ((',footer:'))'});
+            document.getElementById('ta-output').value = Base4096Hangul.encodeString(document.getElementById('ta-input').value, { header: 'https:// neruthes .xyz/Base4096Hangul/ — |: ', footer: ' :|', randomSpaces: true });
     		document.getElementById('ta-output').select();
         }, 150);
 	};

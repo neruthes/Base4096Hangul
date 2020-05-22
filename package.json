@@ -1,6 +1,6 @@
 {
-  "name": "Base4096Hangul",
-  "version": "1.0.0",
+  "name": "base4096hangul",
+  "version": "1.0.1",
   "description": "Encode data in Hangul",
   "main": "index.js",
   "scripts": {
