@@ -48,11 +48,11 @@ Base4096Hangul.encodeString = function (rawStr, inputOptions) {
             var stepLength = Math.floor(Math.random() * 4) + 2;
             var phrase = tmp2.slice(0, stepLength);
             console.log(phrase);
-            tmp3 += phrase + ' ';
+            tmp3 += phrase + [' ', ' ', ' ', ' ', ', ', '. '][Math.floor(Math.random()*6)];
             tmp2 = tmp2.slice(stepLength);
             tmp3progress += stepLength;
         };
-        result = tmp3;
+        result = (tmp3.trimRight() + '.').replace('..', '.');
     };
     // Use `0xAC00 + 8200` for padding in future
 	return options.header + result + options.footer;

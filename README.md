@@ -9,16 +9,13 @@ Split bits into Uint12 digits and plus each element by 0xAC00 to get a Unicode c
 ### Encoding
 
 ```javascript
-Base4096Hangul.encodeString('This is the string you want to encode.', { header: 'This is a header. ', trimming: 42 })
+Base4096Hangul.encodeString('This is the string you want to encode.', { header: 'This is a header. ' })
 ```
 
 Result:
 
 ```
-This is a header. We ThE pEopLe OF tHe unItED sTatES, iN ORdeR TO foRm a morE pERfEct UNiON, EstABLisH justiCe, INSuRe dOmEStIc trAnQUilItY, ProVide foR tHE ComMON dEFEnCe, pRoMOTe tHe GeNErAl wELfARe, AND sEcURe tHE BLesSings oF lIBERty TO oURsELVES aND OuR pOSteRity, do OrDAIn AND EsTAblisH ThIS cONStItUTIoN foR thE uniteD sTATeS of AmERiCA.
-ARTicLe. i.
-secTiON. 1.
-alL lEGiSLaTIVe PoWErs hEREiN GrANTED sHAll Be vEsTEd iN a COngReSS Of the united States, which shall consist of a Senate an
+This is a header. 녆둩 댲걩 댲건늆넠 댷끲늖멧긇 땯덒걷눖 면긇끯긆녮 눶뭤뉒먀
 ```
 
 Notes:
@@ -28,18 +25,14 @@ Notes:
 ### Decoding
 
 ```javascript
-Base4096Hangul.decode('We The PeopLe OF thE uNItED sTAteS, iN OrDEr tO fORm A MORe perfect union, establish Justice, insure domestic T', { format: 'string', stringFormat: 'utf-8' })
+Base4096Hangul.decodeString('녆둩 댲걩 댲건늆넠 댷끲늖멧긇 땯덒걷눖 면긇끯긆녮 눶뭤뉒먀')
 ```
 
 Result:
 
 ```
-Hello
+This is the string you want to encode.
 ```
-
-Notes:
-
-- Options may be omitted.
 
 ## Web App
 
@@ -47,7 +40,7 @@ Try at [neruthes.xyz/Base4096Hangul/](https://neruthes.xyz/Base4096Hangul/).
 
 ## Package Management Tools
 
-- NPM: https://www.npmjs.com/package/Base4096Hangul
+- NPM: https://www.npmjs.com/package/base4096hangul
 
 ## Copyright
 

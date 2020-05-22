@@ -161,8 +161,8 @@
 			<textarea id="ta-input" autofocus></textarea>
 		</div>
 		<div class="content" id="userActions-container">
-			<button onclick="btn_encodeBUsc()">Encode</button>
-			<button onclick="btn_decodeBUsc()">Decode</button>
+			<button onclick="btn_encodeB4096H(true)">Encode</button>
+			<button onclick="btn_decodeB4096H(true)">Decode</button>
 		</div>
 		<div class="content" id="ta-output-container">
 			<h2>Result</h2>
@@ -176,22 +176,27 @@
 		</footer>
 	</div>
 	<script>
-	var btn_encodeBUsc = function () {
+	var btn_encodeB4096H = function (isAutofocusEnabled) {
         document.getElementById('ta-output').value = '';
 		setTimeout(function () {
-            document.getElementById('ta-output').value = Base4096Hangul.encodeString(document.getElementById('ta-input').value, { header: 'https:// neruthes .xyz/Base4096Hangul/ — |: ', footer: ' :|', randomSpaces: true });
-    		document.getElementById('ta-output').select();
+            document.getElementById('ta-output').value = Base4096Hangul.encodeString(document.getElementById('ta-input').value, { header: '穷也不能穷山东 ', footer: ' 完全成功思密达', randomSpaces: true });
+			if (isAutofocusEnabled) {
+				document.getElementById('ta-output').select();
+			}
         }, 150);
 	};
-	var btn_decodeBUsc = function () {
+	var btn_decodeB4096H = function (isAutofocusEnabled) {
         document.getElementById('ta-output').value = '';
         setTimeout(function () {
     		document.getElementById('ta-output').value = Base4096Hangul.decodeString(document.getElementById('ta-input').value);
-    		document.getElementById('ta-output').select();
+			if (isAutofocusEnabled) {
+				document.getElementById('ta-output').select();
+			}
         }, 150);
 	};
 
-	document.getElementById('ta-input').value = 'Hello world!';
+	document.getElementById('ta-input').value = 'Hello world! This is sample text. Write your text here.';
+	btn_encodeB4096H(false);
 
 	var taOutputFocusEventHandler = function () {
 		setTimeout(function () {
