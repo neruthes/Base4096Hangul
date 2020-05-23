@@ -52,7 +52,7 @@ Base4096Hangul.encodeString = function (rawStr, inputOptions) {
             tmp2 = tmp2.slice(stepLength);
             tmp3progress += stepLength;
         };
-        result = (tmp3.trimRight() + '.').replace('..', '.');
+        result = (tmp3.trimRight() + '.').replace(/[\,\.]\./, '.');
     };
     // Use `0xAC00 + 8200` for padding in future
 	return options.header + result + options.footer;
